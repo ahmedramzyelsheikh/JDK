@@ -1,91 +1,89 @@
 # JDK
 Learn Backend Java Path
 
-A single Maven project for working through the Java backend path. Each topic lives in its
-own package under `src/main/java/com/jdk/`, with a runnable example (`main` method) and a
-matching JUnit 5 test under `src/test/java/com/jdk/`.
+A complete path to becoming a Java backend developer: **29 topic folders** with theory, diagrams,
+the packages/libraries to use (and why), corner cases, interview questions, exercises and runnable,
+tested practicals — plus a small starter Maven project to write your own code in.
+
+👉 **Start here: [topics/README.md](topics/README.md)**
 
 ## Requirements
 
 - JDK 21 (Eclipse Temurin 21 recommended)
 - Maven is optional: the Maven Wrapper (`mvnw` / `mvnw.cmd`) downloads the right version for you.
+- Optional: .NET SDK (C# comparisons in topics 03 and 09), GCC (C/C++ comparison), Docker (topics 23–29).
 
 ## Commands
 
 ```bash
-# compile and run all tests
-./mvnw test          # Windows: .\mvnw.cmd test
+# your own exercises (starter project in src/)
+./mvnw test                                  # Windows: .\mvnw.cmd test
 
-# run the tests for one topic
-./mvnw test -Dtest="com.jdk.collections.*Test"
+# all topic practicals that use Maven (Spring Boot, Hibernate, Jackson, jOOQ, ...)
+./mvnw -f topics/pom.xml verify
 
-# run one example
-./mvnw -q compile
-java -cp target/classes com.jdk.functional.Orders
+# all single-file practicals (java File.java)
+bash scripts/run-practicals.sh
+
+# one single-file practical
+java topics/06-advanced-java/06-concurrency/practical/VirtualThreadsDemo.java
 ```
 
-In IntelliJ IDEA or VS Code (with the Java Extension Pack) open the folder and it is picked
-up as a Maven project; run any `main` method or test directly from the editor.
+In IntelliJ IDEA or VS Code (with the Java Extension Pack) open the folder; both `pom.xml` files are picked up as
+Maven projects.
 
-## Project layout
+## Repository layout
 
 ```
-src/main/java/com/jdk/
-  basics/        01 types, control flow, arrays, strings, switch expressions
-  oop/           02 classes, interfaces, records, sealed types, pattern matching
-  exceptions/    03 checked vs unchecked, custom exceptions, try/catch/finally
-  collections/   04 List, Set, Map, Comparator
-  generics/      05 generic types and methods, bounds, wildcards
-  functional/    06 lambdas, method references, Streams, Optional
-  io/            07 java.nio.file, try-with-resources
-  concurrency/   08 ExecutorService, CompletableFuture, atomics, virtual threads
-src/test/java/com/jdk/   one test class per example
+topics/                      the learning material: 01-history ... 29-capstone (see topics/README.md)
+  pom.xml                    parent of every Maven-based practical (Spring Boot 4.1 BOM, Java 21)
+scripts/run-practicals.sh    runs every single-file practical (used by CI)
+src/main/java/com/jdk/       starter project: one package per core topic for your own exercises
+src/test/java/com/jdk/       tests for the starter project
+.github/workflows/build.yml  CI: builds and tests everything on every push
 ```
-
-Add a new topic by creating a package (for example `com.jdk.datetime`) with an example
-class and a test next to it.
 
 ## Roadmap
 
-### Phase 1: Core Java (this project)
-- [ ] 01 Basics: syntax, primitive types, operators, control flow, methods, arrays, `String` / `StringBuilder`
-- [ ] 02 OOP: classes, encapsulation, inheritance, polymorphism, interfaces, abstract classes, records, sealed types
-- [ ] 03 Exceptions: hierarchy, checked vs unchecked, custom exceptions, try-with-resources
-- [ ] 04 Collections: `List`, `Set`, `Map`, `Queue`/`Deque`, `equals`/`hashCode`, `Comparable`/`Comparator`, Big-O of each
-- [ ] 05 Generics: type parameters, bounded types, wildcards (PECS), type erasure
-- [ ] 06 Functional: lambdas, functional interfaces, method references, Streams, Collectors, `Optional`
-- [ ] 07 I/O: `java.nio.file`, reading/writing files, serialization basics, JSON (Jackson)
-- [ ] 08 Concurrency: threads, `ExecutorService`, `CompletableFuture`, locks, atomics, concurrent collections, virtual threads
-- [ ] Date/time API (`java.time`), `enum`, `var`, text blocks, modern Java 17-21 features
+### Phase 1: Core Java
+- [ ] [01 History](topics/01-history/README.md) · [02 Compilation & JVM](topics/02-compilation-and-jvm/README.md) · [03 C/C++/C#/Java](topics/03-language-comparison/README.md)
+- [ ] [04 Foundation syntax](topics/04-foundation-syntax/README.md): types, operators, control flow, methods, arrays, strings, `java.time`, `enum`, `var`, text blocks
+- [ ] [05 OOP](topics/05-oop/README.md): classes, encapsulation, inheritance, polymorphism, interfaces, abstract classes, records, sealed types
+- [ ] [06.01 Exceptions](topics/06-advanced-java/01-exceptions/README.md) · [06.02 Collections](topics/06-advanced-java/02-collections/README.md) · [06.03 Generics](topics/06-advanced-java/03-generics/README.md)
+- [ ] [06.04 Lambdas & Streams](topics/06-advanced-java/04-functional-streams/README.md) · [06.05 I/O & JSON](topics/06-advanced-java/05-io-nio-json/README.md) · [06.06 Concurrency](topics/06-advanced-java/06-concurrency/README.md)
+- [ ] [06.07 Modern Java](topics/06-advanced-java/07-modern-java/README.md) · [06.08 JVM memory & GC](topics/06-advanced-java/08-jvm-memory-gc/README.md) · [06.09 Reflection & modules](topics/06-advanced-java/09-reflection-annotations-modules/README.md)
+- [ ] [07 MVC](topics/07-mvc/README.md) · [08 REST APIs](topics/08-rest-api/README.md) · [09 LINQ](topics/09-linq/README.md) · [10 ORM](topics/10-orm/README.md)
 
 ### Phase 2: Tooling and quality
-- [ ] Git workflow: branches, pull requests, meaningful commits
-- [ ] Maven: lifecycle, dependencies, scopes, plugins (and a look at Gradle)
-- [ ] Testing: JUnit 5, AssertJ, Mockito, test-driven development
-- [ ] Clean code, SOLID, common design patterns (Builder, Factory, Strategy, Singleton, Observer)
-- [ ] Logging with SLF4J + Logback, debugging in the IDE
+- [ ] [11 Git workflow](topics/11-git/README.md): branches, pull requests, meaningful commits
+- [ ] [12 Maven & Gradle](topics/12-build-tools/README.md): lifecycle, dependencies, scopes, plugins
+- [ ] [13 Testing](topics/13-testing/README.md): JUnit, AssertJ, Mockito, test-driven development
+- [ ] [14 Clean code, SOLID, design patterns](topics/14-clean-code-solid-design-patterns/README.md)
+- [ ] [15 Logging & debugging](topics/15-logging-debugging/README.md): SLF4J + Logback, debugging in the IDE
 
 ### Phase 3: Databases
-- [ ] SQL: joins, indexes, transactions, normalization (PostgreSQL or MySQL)
-- [ ] JDBC: connections, `PreparedStatement`, transactions, connection pools (HikariCP)
-- [ ] JPA / Hibernate: entities, relationships, lazy vs eager loading, the N+1 problem
-- [ ] Database migrations with Flyway or Liquibase
+- [ ] [16 SQL](topics/16-sql/README.md): joins, indexes, transactions, normalization
+- [ ] [17 JDBC](topics/17-jdbc/README.md): connections, `PreparedStatement`, transactions, HikariCP
+- [ ] JPA / Hibernate: covered in [10 ORM](topics/10-orm/README.md)
+- [ ] [18 Migrations](topics/18-database-migrations/README.md): Flyway, Liquibase
 
 ### Phase 4: Web and Spring
-- [ ] HTTP and REST fundamentals: methods, status codes, headers, JSON
-- [ ] Spring Core: IoC container, dependency injection, beans, profiles, configuration
-- [ ] Spring Boot: REST controllers, validation, global exception handling, Spring Data JPA
-- [ ] Spring Security: authentication, authorization, JWT, OAuth2 basics
-- [ ] API documentation with OpenAPI / Swagger
-- [ ] Integration testing with `@SpringBootTest` and Testcontainers
+- [ ] HTTP and REST fundamentals: covered in [08 REST APIs](topics/08-rest-api/README.md)
+- [ ] [19 Spring Core](topics/19-spring-core/README.md): IoC container, dependency injection, beans, profiles, configuration
+- [ ] [20 Spring Boot](topics/20-spring-boot/README.md): REST controllers, validation, global exception handling, Spring Data JPA
+- [ ] [21 Spring Security](topics/21-spring-security/README.md): authentication, authorization, JWT, OAuth2
+- [ ] [22 OpenAPI / Swagger](topics/22-openapi-swagger/README.md)
+- [ ] [23 Integration testing](topics/23-integration-testing/README.md): `@SpringBootTest`, Testcontainers
 
 ### Phase 5: Production backend
-- [ ] Docker and Docker Compose
-- [ ] Caching (Redis), messaging (RabbitMQ or Kafka)
-- [ ] Microservices basics: service communication, API gateway, resilience
-- [ ] Observability: Actuator, metrics, structured logs
-- [ ] CI/CD with GitHub Actions, deploying to a cloud provider
-- [ ] Capstone: a complete REST API (for example a bank, store or task manager) with auth, DB, tests and Docker
+- [ ] [24 Docker & Compose](topics/24-docker/README.md)
+- [ ] [25 Caching & messaging](topics/25-caching-messaging/README.md): Redis, RabbitMQ, Kafka
+- [ ] [26 Microservices](topics/26-microservices/README.md): communication, API gateway, resilience
+- [ ] [27 Observability](topics/27-observability/README.md): Actuator, metrics, tracing, structured logs
+- [ ] [28 CI/CD & cloud](topics/28-cicd-cloud/README.md): GitHub Actions, deployment
+- [ ] [29 Capstone](topics/29-capstone/README.md): a complete REST API with auth, DB, tests and Docker
 
-Phases 3 and later are best done as separate Spring Boot projects (or as Maven modules
-added to this repository when you get there).
+## Starter project (`src/`)
+
+`src/main/java/com/jdk/` has one package per core topic (basics, oop, exceptions, collections, generics,
+functional, io, concurrency), each with a small example and a JUnit 5 test. Add your exercise solutions there.
