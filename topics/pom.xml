@@ -29,6 +29,7 @@
         <module>07-mvc/practical/spring-mvc-tasks</module>
         <module>08-rest-api/practical/spring-rest-products</module>
         <module>09-linq/practical/jooq-queries</module>
+        <module>10-orm/practical/orm-comparison</module>
     </modules>
 
     <dependencyManagement>
