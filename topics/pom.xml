@@ -32,6 +32,7 @@
         <module>10-orm/practical/orm-comparison</module>
         <module>12-build-tools/practical/maven-multimodule</module>
         <module>13-testing/practical/testing-demo</module>
+        <module>15-logging-debugging/practical/logging-demo</module>
     </modules>
 
     <dependencyManagement>
