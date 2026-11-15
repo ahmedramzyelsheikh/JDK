@@ -34,6 +34,7 @@
         <module>13-testing/practical/testing-demo</module>
         <module>15-logging-debugging/practical/logging-demo</module>
         <module>16-sql/practical/sql-playground</module>
+        <module>17-jdbc/practical/jdbc-demo</module>
     </modules>
 
     <dependencyManagement>
