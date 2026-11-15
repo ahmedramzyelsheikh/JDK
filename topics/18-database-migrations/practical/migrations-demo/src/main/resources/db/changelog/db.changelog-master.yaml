@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-product
+      author: jdk-course
+      changes:
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: price
+                  type: numeric(10,2)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2-seed-products
+      author: jdk-course
+      changes:
+        - insert:
+            tableName: product
+            columns:
+              - column: { name: name, value: Laptop }
+              - column: { name: price, valueNumeric: 1200.00 }
+        - insert:
+            tableName: product
+            columns:
+              - column: { name: name, value: Mouse }
+              - column: { name: price, valueNumeric: 25.00 }
+      rollback:
+        - delete:
+            tableName: product
+            where: name in ('Laptop', 'Mouse')
+
+  - changeSet:
+      id: 3-add-product-stock
+      author: jdk-course
+      changes:
+        - addColumn:
+            tableName: product
+            columns:
+              - column:
+                  name: stock
+                  type: int
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+      # addColumn has an automatic rollback (dropColumn)

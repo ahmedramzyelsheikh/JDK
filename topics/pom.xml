@@ -35,6 +35,7 @@
         <module>15-logging-debugging/practical/logging-demo</module>
         <module>16-sql/practical/sql-playground</module>
         <module>17-jdbc/practical/jdbc-demo</module>
+        <module>18-database-migrations/practical/migrations-demo</module>
     </modules>
 
     <dependencyManagement>
