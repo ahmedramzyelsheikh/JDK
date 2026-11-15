@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tasks · Spring MVC</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+</head>
+<body>
+<main>
+    <h1>Tasks</h1>
+    <p class="hint">VIEW layer: this Thymeleaf template only renders the model the controller prepared.</p>
+
+    <!-- flash message survives the redirect of Post/Redirect/Get -->
+    <p class="flash" th:if="${message}" th:text="${message}">Task created</p>
+
+    <!-- th:object + th:field bind the form to the TaskForm DTO; errors come from BindingResult -->
+    <form th:action="@{/tasks}" th:object="${taskForm}" method="post" class="new-task">
+        <input type="text" th:field="*{title}" placeholder="What needs to be done?" maxlength="80">
+        <select th:field="*{priority}">
+            <option th:each="p : ${T(com.jdk.mvc.task.Task.Priority).values()}" th:value="${p}" th:text="${p}">MEDIUM</option>
+        </select>
+        <button type="submit">Add</button>
+        <ul class="errors" th:if="${#fields.hasAnyErrors()}">
+            <li th:each="err : ${#fields.allErrors()}" th:text="${err}">Title is required</li>
+        </ul>
+    </form>
+
+    <table th:unless="${#lists.isEmpty(tasks)}">
+        <thead>
+        <tr><th>#</th><th>Title</th><th>Priority</th><th>Created</th><th></th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}" th:classappend="${task.done} ? 'done'">
+            <td th:text="${task.id}">1</td>
+            <td th:text="${task.title}">Learn MVC</td>   <!-- th:text escapes HTML: XSS-safe -->
+            <td><span class="badge" th:classappend="${#strings.toLowerCase(task.priority)}" th:text="${task.priority}">HIGH</span></td>
+            <td th:text="${#temporals.format(task.createdAt, 'dd/MM HH:mm')}">15/11 10:00</td>
+            <td class="actions">
+                <form th:action="@{/tasks/{id}/toggle(id=${task.id})}" method="post">
+                    <button type="submit" th:text="${task.done} ? 'Reopen' : 'Done'">Done</button>
+                </form>
+                <form th:action="@{/tasks/{id}/delete(id=${task.id})}" method="post">
+                    <button type="submit" class="danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:if="${#lists.isEmpty(tasks)}" class="empty">No tasks yet. Add one above.</p>
+</main>
+</body>
+</html>
