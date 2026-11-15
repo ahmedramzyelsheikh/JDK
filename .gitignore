@@ -33,3 +33,6 @@ Thumbs.db
 
 # .NET build output
 obj/
+
+# jlink output from the modules demo
+tiny-runtime/
