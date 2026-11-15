@@ -188,7 +188,9 @@ Common annotations (`com.fasterxml.jackson.annotation`, same in Jackson 2 and 3)
 
 **Jackson 2 → 3 (Spring Boot 4)**: Maven group `tools.jackson.core`, packages `tools.jackson.databind...`;
 `ObjectMapper` is immutable and built with `JsonMapper.builder()`; exceptions (`JacksonException`) are **unchecked**;
-`java.time` support is built in; annotations stay in `com.fasterxml.jackson.annotation`.
+`java.time` support is built in; annotations stay in `com.fasterxml.jackson.annotation`; some defaults are stricter —
+e.g. a missing JSON value for a **primitive** field (`int stock`) now fails (`FAIL_ON_NULL_FOR_PRIMITIVES`), so use
+wrapper types (`Integer`) for optional numbers.
 
 ### Other formats
 

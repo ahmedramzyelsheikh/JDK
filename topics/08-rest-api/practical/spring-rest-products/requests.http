@@ -1,0 +1,63 @@
+### Run the app first:  ./mvnw -f topics/pom.xml -pl 08-rest-api/practical/spring-rest-products spring-boot:run
+### Then click "Send request" in IntelliJ IDEA or VS Code (REST Client extension).
+
+@base = http://localhost:8080/api/products
+
+### Create (201 + Location + ETag)
+POST {{base}}
+Content-Type: application/json
+
+{"name": "Laptop", "category": "tech", "price": 999.50, "stock": 5}
+
+### Create another
+POST {{base}}
+Content-Type: application/json
+
+{"name": "Coffee mug", "category": "home", "price": 7.25, "stock": 40}
+
+### Validation error (400 Problem Details with field errors)
+POST {{base}}
+Content-Type: application/json
+
+{"name": "", "category": "tech", "price": -1}
+
+### Duplicate name (409)
+POST {{base}}
+Content-Type: application/json
+
+{"name": "laptop", "category": "tech", "price": 1}
+
+### List: filter, sort, paginate
+GET {{base}}?category=tech&sort=price,desc&page=0&size=5
+
+### Get one (note the ETag header)
+GET {{base}}/1
+
+### Replace with the current ETag (200, ETag becomes "2")
+PUT {{base}}/1
+Content-Type: application/json
+If-Match: "1"
+
+{"name": "Laptop Pro", "category": "tech", "price": 1299, "stock": 3}
+
+### Replace with a stale ETag (412 Precondition Failed)
+PUT {{base}}/1
+Content-Type: application/json
+If-Match: "1"
+
+{"name": "Laptop Old", "category": "tech", "price": 10, "stock": 1}
+
+### Partial update
+PATCH {{base}}/1
+Content-Type: application/json
+
+{"stock": 10}
+
+### Delete (204), then GET gives 404
+DELETE {{base}}/2
+
+### Unsupported media type (415 as Problem Details)
+POST {{base}}
+Content-Type: text/plain
+
+hello
