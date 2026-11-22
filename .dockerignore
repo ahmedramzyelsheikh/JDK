@@ -1,0 +1,11 @@
+# Keep the Docker build context small and free of secrets (topic 24)
+.git
+.github
+.idea
+.vscode
+**/target
+**/bin
+**/obj
+**/*.log
+**/.env
+tiny-runtime
