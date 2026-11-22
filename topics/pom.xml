@@ -41,6 +41,7 @@
         <module>21-spring-security/practical/spring-security-jwt</module>
         <module>22-openapi-swagger/practical/openapi-demo</module>
         <module>23-integration-testing/practical/integration-tests-demo</module>
+        <module>25-caching-messaging/practical/caching-messaging-demo</module>
     </modules>
 
     <dependencyManagement>

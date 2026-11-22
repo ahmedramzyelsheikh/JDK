@@ -1,0 +1,16 @@
+# Local infrastructure for topic 25:  docker compose -f topics/25-caching-messaging/practical/compose.yaml up -d
+# then run the app:  ./mvnw -f topics/pom.xml -pl 25-caching-messaging/practical/caching-messaging-demo spring-boot:run
+name: jdk-messaging
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+
+  kafka:
+    image: apache/kafka-native:3.8.0          # single-node KRaft broker (no ZooKeeper)
+    ports: ["9092:9092"]
+
+  rabbitmq:
+    image: rabbitmq:4-management-alpine       # broker + web UI at http://localhost:15672 (guest/guest)
+    ports: ["5672:5672", "15672:15672"]
