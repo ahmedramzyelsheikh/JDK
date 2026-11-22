@@ -36,6 +36,7 @@
         <module>16-sql/practical/sql-playground</module>
         <module>17-jdbc/practical/jdbc-demo</module>
         <module>18-database-migrations/practical/migrations-demo</module>
+        <module>19-spring-core/practical/spring-core-demo</module>
     </modules>
 
     <dependencyManagement>
