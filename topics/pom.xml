@@ -38,6 +38,7 @@
         <module>18-database-migrations/practical/migrations-demo</module>
         <module>19-spring-core/practical/spring-core-demo</module>
         <module>20-spring-boot/practical/spring-boot-library</module>
+        <module>21-spring-security/practical/spring-security-jwt</module>
     </modules>
 
     <dependencyManagement>
