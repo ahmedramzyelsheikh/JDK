@@ -227,6 +227,8 @@ Production settings worth knowing: `server.shutdown=graceful`, `spring.threads.v
   `...-webmvc-test`, `...-data-jpa-test`); test annotations moved to per-technology packages.
 * JSpecify null-safety annotations across the portfolio; built-in **API versioning** and HTTP service clients.
 * Spring Data 4 moved some types (e.g. `PropertyReferenceException` → `org.springframework.data.core`).
+* The auto-configured `RestClient.Builder` needs `spring-boot-starter-restclient` (found in topic 23's practical:
+  without it, injecting `RestClient.Builder` fails at startup).
 * Upgrade path: first get to the latest Boot 3.5, fix deprecations, then use the Boot 4 migration guide / OpenRewrite.
 
 ---

@@ -40,6 +40,7 @@
         <module>20-spring-boot/practical/spring-boot-library</module>
         <module>21-spring-security/practical/spring-security-jwt</module>
         <module>22-openapi-swagger/practical/openapi-demo</module>
+        <module>23-integration-testing/practical/integration-tests-demo</module>
     </modules>
 
     <dependencyManagement>
